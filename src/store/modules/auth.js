@@ -1,9 +1,9 @@
+import Vue from 'vue';
 import axios from 'axios';
 import * as types from '../mutation-types';
-import config from '../../../config';
 
-const api = config.dev.env.api;
-
+const apiRoot = process.env.API_ROOT;
+const apiVersion = process.env.API_VERSION;
 
 // initial state
 const state = {
@@ -17,18 +17,18 @@ const state = {
 const getters = {
   token: state => state.token,
 };
-console.log(api);
+
 // actions
 const actions = {
   login({ commit }, payload) {
-    commit(types.LOGIN_PENDING); // set the user in the store
-    axios.post(`${api.root}/${api.version}/signin`, payload)
+    commit(types.LOGIN_PENDING);
+    axios.post(`${apiRoot}/${apiVersion}/signin`, payload)
     .then((response) => {
-      this.$cookie.set('user-auth', response.data.token, 1);
-      commit(types.LOGIN_SUCCESS, response.data); // set the user in the store
+      Vue.cookie.set('user-auth', response.data.token, 1);
+      commit(types.LOGIN_SUCCESS, response.data);
     })
     .catch((err) => {
-      commit(types.LOGIN_FAILURE, err); // set the user in the store
+      commit(types.LOGIN_FAILURE, err);
     });
   },
 };
