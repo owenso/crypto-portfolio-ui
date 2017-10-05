@@ -1,11 +1,9 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
 import VueCookie from 'vue-cookie';
 import Router from 'vue-router';
 import Landing from '@/components/landing/Landing';
 
 Vue.use(Router);
-Vue.use(Vuex);
 Vue.use(VueCookie);
 
 export default new Router({

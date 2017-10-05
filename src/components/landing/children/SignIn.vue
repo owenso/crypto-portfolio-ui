@@ -22,10 +22,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-import config from '../../../../config';
-
-const api = config.dev.env.api;
 
 export default {
   data() {
@@ -48,14 +44,7 @@ export default {
         Provider: 'local',
       };
 
-      axios.post(`${api.root}/${api.version}/signin`, payload)
-      .then((response) => {
-        this.$cookie.set('user-auth', response.data.token, 1);
-        this.$store.commit('setUser', response.data); // set the user in the store
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      this.$store.dispatch('login', payload);
     },
   },
 };
