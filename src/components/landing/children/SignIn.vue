@@ -1,6 +1,6 @@
 <template>
   <div class='uk-card uk-card-body uk-card-default'>
-    <form class="uk-grid-small" uk-grid>
+    <div class="uk-grid-small" uk-grid>
         <h2 class='uk-card-title'>Sign In</h2>
         <div class="uk-margin-medium-top uk-width-1-1">
             <input v-model="username" class="uk-input" type="text" placeholder="Username">
@@ -17,11 +17,16 @@
         <div class="uk-width-1-2 uk-text-center">
           <button class="uk-button uk-button-text" v-on:click="showReset">Forgot Your Password</button>
         </div>
-    </form>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+import config from '../../../../config';
+
+const api = config.dev.env.api;
+
 export default {
   data() {
     return {
@@ -42,7 +47,15 @@ export default {
         Password: this.password,
         Provider: 'local',
       };
-      console.log(payload);
+
+      axios.post(`${api.root}/${api.version}/signin`, payload)
+      .then((response) => {
+        this.$cookie.set('user-auth', response.data.token, 1);
+        this.$store.commit('setUser', response.data); // set the user in the store
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     },
   },
 };
