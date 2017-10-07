@@ -1,35 +1,41 @@
-import Vue from 'vue';
 import axios from 'axios';
 import * as types from '../mutation-types';
+import router from '../../router';
 
 const apiRoot = process.env.API_ROOT;
-const apiVersion = process.env.API_VERSION;
 
 // initial state
 const state = {
   loginPending: false,
   loginFailure: false,
   loginSuccess: false,
-  token: null,
 };
 
 // getters
 const getters = {
-  token: state => state.token,
+  // token: state => state.token,
 };
 
 // actions
 const actions = {
   login({ commit }, payload) {
     commit(types.LOGIN_PENDING);
-    axios.post(`${apiRoot}/${apiVersion}/signin`, payload)
+    axios.post(`${apiRoot}/signin`, payload)
     .then((response) => {
-      Vue.cookie.set('user-auth', response.data.token, 1);
-      commit(types.LOGIN_SUCCESS, response.data);
+      localStorage.setItem('ua', response.data.token);
+      commit(types.LOGIN_SUCCESS);
+      commit(types.SET_USER_INFO, response.data);
+      router.push('/main');
     })
     .catch((err) => {
       commit(types.LOGIN_FAILURE, err);
     });
+  },
+  logout({ commit }) {
+    localStorage.removeItem('ua');
+    commit(types.LOGOUT);
+    commit(types.CLEAR_USER_INFO);
+    router.push('/');
   },
 };
 
@@ -39,21 +45,22 @@ const mutations = {
     state.loginPending = true;
     state.loginFailure = false;
     state.loginSuccess = false;
-    state.token = null;
   },
 
-  [types.LOGIN_FAILURE](state, { error }) {
+  [types.LOGIN_FAILURE](state, error) {
     state.loginPending = false;
     state.loginFailure = error;
     state.loginSuccess = false;
-    state.token = null;
   },
 
-  [types.LOGIN_SUCCESS](state, { token }) {
+  [types.LOGIN_SUCCESS](state) {
     state.loginPending = false;
     state.loginFailure = false;
     state.loginSuccess = true;
-    state.token = token;
+  },
+
+  [types.LOGOUT](state) {
+    state.loginSuccess = false;
   },
 };
 
