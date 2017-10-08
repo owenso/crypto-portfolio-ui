@@ -3,7 +3,6 @@
         <div class='uk-visible@s uk-width-medium'>
             <sidebar></sidebar>
         </div>
-        <!-- <div id="divider"></div> -->
         <div class="uk-width-auto">
             <div class='uk-hidden@s' id='mobile-bar'>
                 <button v-on:click='logout()'>Logout</button>
@@ -37,13 +36,5 @@ export default {
   height:100%;
   background-color: white;
 }
-
-/* #divider{
-    height:90%;
-    padding:0;
-    width:1px;
-    margin: 2.5% 5px;
-    border-right: 4px solid white;
-} */
 
 </style>

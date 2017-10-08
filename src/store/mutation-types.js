@@ -5,6 +5,10 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export const LOGOUT = 'LOGOUT';
 
+export const SIGNUP_PENDING = 'SIGNUP_PENDING';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+
 
 // user types
 export const SET_USER_INFO = 'SET_USER_INFO';

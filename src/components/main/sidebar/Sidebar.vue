@@ -1,9 +1,6 @@
 <template>
     <div id='side-bar' class='uk-text-center'>
-        <div id="sidebar-top">
-            <h1>Sidebar</h1>
-            <button v-on:click='logout()'>Logout</button>
-        </div>
+        <user-panel></user-panel>
         <div id='sidebar-list' class='uk-panel uk-panel-scrollable' uk-height-viewport="offset-top: true">
             <ul class="uk-grid-collapse uk-text-center uk-child-width-1-1" uk-sortable="handle: .uk-card" uk-grid>
                 <li>
@@ -36,15 +33,15 @@
 </template>
 
 <script>
+import UserPanel from './UserPanel';
+
 export default {
   data() {
     return {
     };
   },
-  methods: {
-    logout() {
-      this.$store.dispatch('logout');
-    },
+  components: {
+    UserPanel,
   },
 };
 </script>
@@ -53,14 +50,6 @@ export default {
 #side-bar{
     background-color: #13547a;
     height:100%;
-
-    #sidebar-top{
-        padding-top: 2em;
-    }
-
-    h1{
-        color: white;
-    }
 
     #sidebar-list{
     resize:none;

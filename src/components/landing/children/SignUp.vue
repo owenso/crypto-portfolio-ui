@@ -67,10 +67,10 @@ export default {
             FirstName: this.firstName,
             LastName: this.lastName,
           };
-
-          console.log(payload);
-
-          // this.$store.dispatch('signup', payload);
+          this.$store.dispatch('signup', payload)
+          .then(() => {
+            this.$emit('show', 'emailSent');
+          });
         } else {
           console.log('handle error');
         }

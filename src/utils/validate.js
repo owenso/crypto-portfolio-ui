@@ -9,8 +9,8 @@ export default function () {
       reject();
     } else {
       axios.get(`${apiRoot}/auth/validate`)
-        .then(() => {
-          resolve();
+        .then((response) => {
+          resolve(response.data);
         })
         .catch(() => {
           localStorage.removeItem('ua');
