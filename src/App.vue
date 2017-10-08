@@ -19,13 +19,18 @@ export default {
 
 <style>
 @import '../node_modules/uikit/dist/css/uikit.min.css';
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 html,
 body{
-  height:100%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height:100%;
+}
+
+.uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', 'Avenir', Helvetica, Arial, sans-serif !important;
 }
 
 #app {

@@ -6,11 +6,15 @@ import router from './router';
 import store from './store';
 import axiosConfig from './config/axiosConfig';
 import validateToken from './utils/validate';
+import initializeVeeValidate from './config/veeValidate';
+import raven from './config/raven';
 
 Vue.config.productionTip = false;
 
 
+raven();
 axiosConfig();
+initializeVeeValidate();
 
 router.beforeEach((to, from, next) => {
   const authRequired = to.matched.some(route => route.meta.auth);

@@ -41,6 +41,6 @@ export default {
 }
 
 .landing-content{
-    margin-top: 20vh;
+    margin-top: 15vh;
 }
 </style>

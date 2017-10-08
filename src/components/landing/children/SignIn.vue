@@ -12,10 +12,10 @@
             <button v-on:click='submitLogin()' class='uk-button uk-button-default uk-width-1-1'>Log In</button>
         </div>
         <div class="uk-width-1-2 uk-text-center">
-          <button class="uk-button uk-button-text" v-on:click="showSignUp">Sign Up</button>
+          <button class="uk-button uk-button-text" v-on:click="showSignUp">Need to Sign Up?</button>
         </div>
         <div class="uk-width-1-2 uk-text-center">
-          <button class="uk-button uk-button-text" v-on:click="showReset">Forgot Your Password</button>
+          <button class="uk-button uk-button-text" v-on:click="showReset">Forgot Your Password?</button>
         </div>
     </div>
   </div>
