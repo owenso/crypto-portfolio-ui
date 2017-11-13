@@ -14,6 +14,31 @@ UIkit.use(Icons);
 
 export default {
   name: 'app',
+  data() {
+    return {
+      isConnected: false,
+      socketMessage: '',
+    };
+  },
+  sockets: {
+    connect() {
+      // Fired when the socket connects.
+      console.log('connected');
+      this.isConnected = true;
+    },
+
+    disconnect() {
+      console.log('disconnected');
+      this.isConnected = false;
+    },
+  },
+
+  methods: {
+    pingServer() {
+      // Send the "pingServer" event to the server.
+      this.$socket.emit('pingServer', 'PING!');
+    },
+  },
 };
 </script>
 

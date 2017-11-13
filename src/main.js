@@ -8,6 +8,8 @@ import axiosConfig from './config/axiosConfig';
 import validateToken from './utils/validate';
 import initializeVeeValidate from './config/veeValidate';
 import raven from './config/raven';
+import socket from './config/socketio';
+import autocomplete from './config/v-autocomplete';
 
 Vue.config.productionTip = false;
 
@@ -15,7 +17,8 @@ Vue.config.productionTip = false;
 raven();
 axiosConfig();
 initializeVeeValidate();
-
+socket();
+autocomplete();
 router.beforeEach((to, from, next) => {
   const authRequired = to.matched.some(route => route.meta.auth);
   if (!authRequired) {

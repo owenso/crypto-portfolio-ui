@@ -9,11 +9,13 @@
             </div>
             <h1>Main View</h1>
         </div>
+        <portfolio-card></portfolio-card>
     </div>
 </template>
 
 <script>
 import Sidebar from './sidebar/Sidebar';
+import PortfolioCard from './sidebar/modals/NewPortfolio';
 
 export default {
   data() {
@@ -27,6 +29,7 @@ export default {
   },
   components: {
     Sidebar,
+    PortfolioCard,
   },
 };
 </script>

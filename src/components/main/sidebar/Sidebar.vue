@@ -2,30 +2,36 @@
     <div id='side-bar' class='uk-text-center'>
         <user-panel></user-panel>
         <div id='sidebar-list' class='uk-panel uk-panel-scrollable' uk-height-viewport="offset-top: true">
-            <ul class="uk-grid-collapse uk-text-center uk-child-width-1-1" uk-sortable="handle: .uk-card" uk-grid>
+            <ul class="uk-grid-collapse uk-text-center uk-child-width-1-1" uk-sortable="handle: .uk-sortable-handle" uk-grid>
                 <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card">Item 1</div>
+                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 1</div>
                 </li>
                 <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card">Item 2</div>
+                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 2</div>
                 </li>
                 <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card">Item 3</div>
+                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 3</div>
                 </li>
                 <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card">Item 4</div>
+                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 4</div>
                 </li>
                 <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card">Item 5</div>
+                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 5</div>
                 </li>
                 <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card">Item 6</div>
+                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 6</div>
                 </li>
                 <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card">Item 7</div>
+                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 7</div>
                 </li>
                 <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card">Item 8</div>
+                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 8</div>
+                </li>
+                <li>
+                    <div uk-toggle="target: #new-portfolio-modal" class="uk-card uk-card-default uk-card-body add-portfolio-card"> 
+                        <span uk-icon="icon: plus"></span>
+                        <p>Add New Portfolio</p>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -63,6 +69,19 @@ export default {
             background-color: rgba(255, 255, 255, 0.1);
             color: white;
             border: 1px white solid;
+        }
+
+        .add-portfolio-card{
+            cursor: pointer;
+            margin-bottom: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px white dashed;
+            
+
+            p{
+                margin: 0;
+            }
         }
     }
 

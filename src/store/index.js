@@ -5,6 +5,7 @@ import createLogger from 'vuex/dist/logger';
 // import * as getters from './getters';
 import user from './modules/user';
 import auth from './modules/auth';
+import sockets from './modules/sockets';
 
 Vue.use(Vuex);
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
   modules: {
     user,
     auth,
+    sockets,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],

@@ -24,7 +24,7 @@
             <input v-model="confirmPassword" v-validate="'required|confirmed:password'" data-vv-as="password" name='confirmPassword' class="uk-input" type="password" placeholder="Confirm Password">
             <span v-show="errors.has('confirmPassword') && !errors.has('password')" class="help is-danger">{{ errors.first('confirmPassword') }}</span>
         </div>
-        <div class="uk-margin-small-bottom uk-margin-medium-top uk-width-1-1">
+        <div class="uk-margin-small-bottom uk-margin-large-top uk-width-1-1">
             <button v-on:click='submitSignup()' :disabled="errors.any()" class='uk-button uk-button-default uk-width-1-1'>Sign Up</button>
         </div>
         <div class="uk-width-1-2 uk-text-center">
