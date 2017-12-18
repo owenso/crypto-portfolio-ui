@@ -6,6 +6,7 @@ import createLogger from 'vuex/dist/logger';
 import user from './modules/user';
 import auth from './modules/auth';
 import sockets from './modules/sockets';
+import coins from './modules/coins';
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     user,
     auth,
     sockets,
+    coins,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],

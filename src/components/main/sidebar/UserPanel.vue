@@ -1,5 +1,6 @@
 <template>
   <div id='user-panel'>
+    <img class='uk-border-circle uk-width-1-3' :src='userInfo.avatar'>
     <h3>{{userInfo.firstname}} {{userInfo.lastname}}</h3>
     <br />
     <a v-on:click='logout()'>Logout</a>
@@ -27,7 +28,8 @@ export default {
       color: white;
 
       h1, h2, h3{
-          color:white;
+        margin-top:0;
+        color:white;
       }
 
     }

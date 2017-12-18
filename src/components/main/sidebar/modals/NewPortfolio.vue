@@ -10,7 +10,7 @@
         <div>
           <div class='uk-margin-small-top '>
             <div class='uk-width-1-1'>
-              <v-autocomplete :items="items" v-model="currentItem" :get-label="getLabel" :component-item='template' @update-items="updateItems" :input-attrs="{name: 'select-coin', id: 'select-coin', placeholder:'Coin', class:'uk-select'}"></v-autocomplete>
+              <v-autocomplete :items="coinlist" v-model="currentItem" :get-label="getLabel" :component-item='template' @update-items="updateItems" :input-attrs="{name: 'select-coin', id: 'select-coin', placeholder:'Coin', class:'uk-select'}"></v-autocomplete>
             </div>
           </div>
           <div class='uk-margin-small-top'>
@@ -88,17 +88,12 @@
       },
     },
     computed: {
-      // ...mapGetters([
-      //   'cmc',
-      // ]),
-
-      coinlist: function coinlist(state) {
-        console.log('computed updated');
-        console.log(state);
-        if (!this.filtered) {
-          this.items = this.$store.getters.coinlist;
-        }
+      coinlist() {
+        return this.$store.state.coins.list;
       },
+    },
+    created() {
+      this.$store.dispatch('getCoinList');
     },
   };
 
