@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <b>#{{item.id}}</b>
-    <span>{{ item.name }}</span>
-    <abbr>{{item.description}}</abbr>
+  <div class="uk-grid autocomplete-item">
+    <div class='uk-width-1-6'>
+      <small>#{{item.rank}}</small>
+    </div>
+    <div class='uk-width-5-6'>
+      <h4>{{item.value}}</h4>
+      <p>{{ item.name }}</p>
+    </div>
   </div>
 </template>
 
@@ -14,3 +18,12 @@ export default {
   },
 };
 </script>
+
+<style lang="less" scoped>
+    .autocomplete-item{
+        width:100%;
+    }
+    p, h4{
+        margin:0;
+    }
+</style>

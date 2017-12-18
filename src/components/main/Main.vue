@@ -16,11 +16,16 @@
 <script>
 import Sidebar from './sidebar/Sidebar';
 import PortfolioCard from './sidebar/modals/NewPortfolio';
+import socket from '../../config/socketio';
+
 
 export default {
   data() {
     return {
     };
+  },
+  created: function triggerSockets() {
+    socket();
   },
   methods: {
     logout() {

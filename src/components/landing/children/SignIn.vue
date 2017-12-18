@@ -2,6 +2,7 @@
   <div class='uk-card uk-card-body uk-card-default'>
     <div class="uk-grid-small" uk-grid>
         <h2 class='uk-card-title'>Sign In</h2>
+        <div class='uk-width-1-1' v-if="authStatuses.loginFailure">Login Error. Please Try Again.</div>
         <div class="uk-margin-medium-top uk-width-1-1">
             <input v-model="username" class="uk-input" type="text" placeholder="Username">
         </div>
@@ -45,6 +46,11 @@ export default {
       };
 
       this.$store.dispatch('login', payload);
+    },
+  },
+  computed: {
+    authStatuses() {
+      return this.$store.state.auth;
     },
   },
 };
