@@ -7,6 +7,7 @@ import user from './modules/user';
 import auth from './modules/auth';
 import sockets from './modules/sockets';
 import coins from './modules/coins';
+import portfolios from './modules/portfolios';
 
 Vue.use(Vuex);
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     auth,
     sockets,
     coins,
+    portfolios,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],

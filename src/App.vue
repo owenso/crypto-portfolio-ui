@@ -45,6 +45,7 @@ export default {
 <style>
 @import '../node_modules/uikit/dist/css/uikit.min.css';
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import '../node_modules/v-autocomplete/dist/v-autocomplete.css';
 
 html,
 body{

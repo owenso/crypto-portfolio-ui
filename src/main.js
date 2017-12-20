@@ -10,10 +10,11 @@ import initializeVeeValidate from './config/veeValidate';
 import raven from './config/raven';
 // import socket from './config/socketio';
 import autocomplete from './config/v-autocomplete';
+import filters from './utils/filters';
 
 Vue.config.productionTip = false;
 
-
+filters();
 raven();
 axiosConfig();
 initializeVeeValidate();

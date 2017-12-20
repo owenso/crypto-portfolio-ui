@@ -15,7 +15,7 @@
 
 <script>
 import Sidebar from './sidebar/Sidebar';
-import PortfolioCard from './sidebar/modals/NewPortfolio';
+import PortfolioCard from './portfolioModal/PortfolioModalMain';
 import socket from '../../config/socketio';
 
 
@@ -26,6 +26,7 @@ export default {
   },
   created: function triggerSockets() {
     socket();
+    this.$store.dispatch('getPortfolioTypes');
   },
   methods: {
     logout() {
