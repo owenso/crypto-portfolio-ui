@@ -18,6 +18,12 @@ const state = {
     success: null,
     failure: null,
   },
+  ownPortfolios: {
+    list: [],
+    pending: null,
+    success: null,
+    failure: null,
+  },
 };
 
 // getters
@@ -40,13 +46,22 @@ const actions = {
   savePortfolio({ commit, rootState }, payload) {
     commit(types.SAVE_PORTFOLIO_PENDING);
     payload.UserID = rootState.user.info.id;
-    console.log(payload);
     axios.post(`${apiRoot}/auth/portfolio/add`, payload)
     .then((response) => {
       commit(types.SAVE_PORTFOLIO_SUCCESS, response.data);
     })
     .catch((err) => {
       commit(types.SAVE_PORTFOLIO_FAILURE, err);
+    });
+  },
+  getOwnPortfolios({ commit }) {
+    commit(types.GET_PORTFOLIO_LIST_PENDING);
+    axios.get(`${apiRoot}/auth/portfolio/list`)
+    .then((response) => {
+      commit(types.GET_PORTFOLIO_LIST_SUCCESS, response.data);
+    })
+    .catch((err) => {
+      commit(types.GET_PORTFOLIO_LIST_FAILURE, err);
     });
   },
 };
@@ -87,6 +102,23 @@ const mutations = {
     state.portfolioSave.pending = true;
     state.portfolioSave.success = false;
     state.portfolioSave.failure = false;
+  },
+  [types.GET_PORTFOLIO_LIST_SUCCESS](state, portfolioList) {
+    state.ownPortfolios.list = portfolioList;
+    state.ownPortfolios.pending = false;
+    state.ownPortfolios.success = true;
+    state.ownPortfolios.failure = false;
+  },
+  [types.GET_PORTFOLIO_LIST_FAILURE](state) {
+    state.ownPortfolios.list = null;
+    state.ownPortfolios.success = false;
+    state.ownPortfolios.failure = true;
+  },
+  [types.GET_PORTFOLIO_LIST_PENDING](state) {
+    state.ownPortfolios.list = null;
+    state.ownPortfolios.pending = true;
+    state.ownPortfolios.success = false;
+    state.ownPortfolios.failure = false;
   },
 };
 

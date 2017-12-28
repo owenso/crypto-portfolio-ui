@@ -1,8 +1,6 @@
 <template>
     <div class='uk-grid-small'>
-      <div class="uk-margin-medium-top uk-width-1-1">
-        <input v-model="title" class="uk-input" type="text" placeholder="Title">
-      </div>
+
       <div>
         <div class='uk-margin-small-top '>
           <div class='uk-width-1-1'>

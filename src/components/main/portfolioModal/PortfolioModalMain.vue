@@ -2,8 +2,8 @@
     <div id="new-portfolio-modal" uk-modal>
     <button class="uk-modal-close-default" type="button" uk-close></button>
     <div class="uk-modal-dialog uk-modal-body">
-      <transition name="fade" mode="out-in">
-        <add-portfolio v-on:show='changeView' v-if='show === "addPortfolio"'></add-portfolio>
+      <transition name="slide" mode="out-in">
+        <add-portfolio v-on:show='changeView' v-if='show === "addPortfolio"' ></add-portfolio>
         <add-transactions v-on:show='changeView' v-if='show === "addTransactions"'></add-transactions>
       </transition>
     </div>
@@ -11,8 +11,24 @@
 </template>
 
 <script>
+// import UIkit from 'uikit';
+import $ from 'jquery';
 import AddPortfolio from './AddPortfolio';
 import AddTransactions from './AddTransactions';
+
+// const modal = UIkit.modal('#new-portfolio-modal');
+
+$('#new-portfolio-modal').on({
+
+  show: () => {
+    console.log('Modal is visible.');
+  },
+
+  hide: () => {
+    console.log('Element is not visible.');
+  },
+});
+
 
 export default {
   data() {
@@ -33,15 +49,19 @@ export default {
 </script>
 
 <style scoped>
-  .enter { transform: translateX(100%) }
-  .enter-to { transform: translateX(0) }
-  .slide-enter-active { position: absolute }
-
-  .leave { transform: translateX(0) }
-  .leave-to { transform: translateX(-100%) }
-
-  .slide-enter-active,
-  .slide-leave-active { transition: all 750ms ease-in-out }
+.uk-modal-body{
+  overflow: hidden;
+}
+.slide-leave-active,
+.slide-enter-active {
+  transition: 500ms;
+}
+.slide-enter {
+  transform: translate(100%, 0);
+}
+.slide-leave-to {
+  transform: translate(-100%, 0);
+}
 </style>
 
 

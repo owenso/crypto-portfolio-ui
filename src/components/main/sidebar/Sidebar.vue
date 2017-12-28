@@ -2,31 +2,8 @@
     <div id='side-bar' class='uk-text-center'>
         <user-panel></user-panel>
         <div id='sidebar-list' class='uk-panel uk-panel-scrollable' uk-height-viewport="offset-top: true">
-            <ul class="uk-grid-collapse uk-text-center uk-child-width-1-1" uk-sortable="handle: .uk-sortable-handle" uk-grid>
-                <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 1</div>
-                </li>
-                <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 2</div>
-                </li>
-                <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 3</div>
-                </li>
-                <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 4</div>
-                </li>
-                <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 5</div>
-                </li>
-                <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 6</div>
-                </li>
-                <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 7</div>
-                </li>
-                <li>
-                    <div class="uk-card uk-card-default uk-card-body portfolio-card uk-sortable-handle">Item 8</div>
-                </li>
+            <ul class="uk-grid-collapse uk-text-center uk-child-width-1-1" id="sortable" uk-sortable="handle: .uk-sortable-handle" uk-grid>
+                <portfolio-card v-for="portfolio in ownPortfolios.list" v-bind:key="portfolio.id" :data-id="portfolio.id" :id="portfolio.id" :title="portfolio.title"></portfolio-card>
                 <li>
                     <div uk-toggle="target: #new-portfolio-modal" class="uk-card uk-card-default uk-card-body add-portfolio-card"> 
                         <span uk-icon="icon: plus"></span>
@@ -39,7 +16,10 @@
 </template>
 
 <script>
+import $ from 'jquery';
+import UIkit from 'uikit';
 import UserPanel from './UserPanel';
+import PortfolioCard from './PortfolioCard';
 
 export default {
   data() {
@@ -48,6 +28,27 @@ export default {
   },
   components: {
     UserPanel,
+    PortfolioCard,
+  },
+  mounted() {
+    UIkit.util.on(('#sortable'), 'moved', (e) => {
+      const array = [];
+      const moved = e.detail[1];
+      const parent = moved.parentNode;
+      $(parent).find('.portfolio-card').each((index, each) => {
+        array.push({
+          index,
+          userid: this.$store.state.user.info.id,
+          portfolioid: $(each).data('id'),
+        });
+      });
+      console.log(array);
+    });
+  },
+  computed: {
+    ownPortfolios() {
+      return this.$store.state.portfolios.ownPortfolios;
+    },
   },
 };
 </script>

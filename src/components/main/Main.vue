@@ -7,7 +7,7 @@
             <div class='uk-hidden@s' id='mobile-bar'>
                 <button v-on:click='logout()'>Logout</button>
             </div>
-            <h1>Main View</h1>
+            <router-view></router-view>
         </div>
         <portfolio-card></portfolio-card>
     </div>
@@ -27,6 +27,7 @@ export default {
   created: function triggerSockets() {
     socket();
     this.$store.dispatch('getPortfolioTypes');
+    this.$store.dispatch('getOwnPortfolios');
   },
   methods: {
     logout() {

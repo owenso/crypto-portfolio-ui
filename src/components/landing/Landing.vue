@@ -1,6 +1,8 @@
 <template>
   <div class='uk-container uk-width-1-2@m uk-width-1-3@xl' id="landing">
       <div class="landing-content">
+        <h1 class="uk-heading-primary">Unnamed Project</h1>
+        <br>
           <transition name="fade">
             <pass-reset v-on:show='changeView' v-if='show === "reset"'></pass-reset>
             <email-sent v-on:show='changeView' v-else-if='show === "emailSent"'></email-sent>
@@ -40,6 +42,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1{
+  color:white;
+}
 
 #landing {
     height:100%;

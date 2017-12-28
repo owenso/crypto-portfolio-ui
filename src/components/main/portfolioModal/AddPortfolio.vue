@@ -24,6 +24,9 @@
 </template>
 
 <script>
+import UIkit from 'uikit';
+import swal from 'sweetalert2';
+
 export default {
   data() {
     return {
@@ -47,15 +50,26 @@ export default {
       };
       this.$store.dispatch('savePortfolio', payload)
       .then(() => {
-        console.log('saved!');
+        this.$store.dispatch('getOwnPortfolios');
         if (next) {
-          console.log('change the page and shit');
+          this.$emit('show', 'addTransactions');
         } else {
-          console.log('hide dat shit');
+          UIkit.modal('#new-portfolio-modal').hide();
+          swal(
+            'Portfolio Added',
+            `"${this.title}" was successfully added. It should appear in your portfolio list and
+             you can add to it whenever you're ready.`,
+            'success',
+          );
         }
       })
       .catch(() => {
-        console.log('error saving portfolio');
+        swal(
+          'Error',
+          'Sorry, there was an error trying to add your portfolio. Please try again later.',
+          'error',
+        );
+        UIkit.modal('#new-portfolio-modal').hide();
       });
     },
   },
