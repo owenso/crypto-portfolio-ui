@@ -3,7 +3,7 @@
         <div class='uk-visible@s uk-width-medium'>
             <sidebar></sidebar>
         </div>
-        <div class="uk-width-auto">
+        <div class="uk-width-expand">
             <div class='uk-hidden@s' id='mobile-bar'>
                 <button v-on:click='logout()'>Logout</button>
             </div>

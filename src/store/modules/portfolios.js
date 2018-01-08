@@ -24,6 +24,11 @@ const state = {
     success: null,
     failure: null,
   },
+  portfolioSort: {
+    pending: null,
+    success: null,
+    failure: null,
+  },
 };
 
 // getters
@@ -64,6 +69,17 @@ const actions = {
       commit(types.GET_PORTFOLIO_LIST_FAILURE, err);
     });
   },
+  sortPortfolios({ commit, rootState }, payload) {
+    commit(types.SORT_PORTFOLIO_PENDING);
+    console.log(payload);
+    axios.post(`${apiRoot}/auth/portfolio/sort`, payload)
+      .then((response) => {
+        commit(types.SORT_PORTFOLIO_SUCCESS, response.data);
+      })
+      .catch((err) => {
+        commit(types.SORT_PORTFOLIO_FAILURE, err);
+      });
+  },
 };
 
 // mutations
@@ -94,6 +110,7 @@ const mutations = {
   },
   [types.SAVE_PORTFOLIO_FAILURE](state) {
     state.portfolioSave.created = null;
+    state.portfolioSave.pending = false;
     state.portfolioSave.success = false;
     state.portfolioSave.failure = true;
   },
@@ -111,6 +128,7 @@ const mutations = {
   },
   [types.GET_PORTFOLIO_LIST_FAILURE](state) {
     state.ownPortfolios.list = null;
+    state.ownPortfolios.pending = false;
     state.ownPortfolios.success = false;
     state.ownPortfolios.failure = true;
   },
@@ -119,6 +137,21 @@ const mutations = {
     state.ownPortfolios.pending = true;
     state.ownPortfolios.success = false;
     state.ownPortfolios.failure = false;
+  },
+  [types.SORT_PORTFOLIO_SUCCESS](state) {
+    state.portfolioSort.pending = false;
+    state.portfolioSort.success = true;
+    state.portfolioSort.failure = false;
+  },
+  [types.SORT_PORTFOLIO_FAILURE](state) {
+    state.portfolioSort.pending = false;
+    state.portfolioSort.success = false;
+    state.portfolioSort.failure = true;
+  },
+  [types.SORT_PORTFOLIO_PENDING](state) {
+    state.portfolioSort.pending = true;
+    state.portfolioSort.success = false;
+    state.portfolioSort.failure = false;
   },
 };
 

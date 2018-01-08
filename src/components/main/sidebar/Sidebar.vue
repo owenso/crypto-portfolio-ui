@@ -42,7 +42,7 @@ export default {
           portfolioid: $(each).data('id'),
         });
       });
-      console.log(array);
+      this.$store.dispatch('sortPortfolios', array);
     });
   },
   computed: {
